@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Container } from './App.styled';
+import { Searchbar } from 'components/Searchbar';
 
 class App extends Component {
   // state = {
@@ -21,9 +22,9 @@ class App extends Component {
 
     return (
       <Container>
+        <Searchbar />
         {/* {loading && <div>Loading...</div>}
         {imageNane && <div>Foto</div>} */}
-        React homework template
       </Container>
     );
   }
