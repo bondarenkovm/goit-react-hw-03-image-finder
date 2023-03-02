@@ -1,5 +1,5 @@
 import { Component } from 'react';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import PropTypes from 'prop-types';
 import { FcSearch } from 'react-icons/fc';
 import { Header, Form, Button, Span, Input } from './Searchbar.styled';
@@ -17,8 +17,7 @@ class Searchbar extends Component {
     const { formSubmit } = this.props;
     evt.preventDefault();
     if (imageName.trim() === '') {
-      alert('name');
-      //   toast.error('Lorem ipsum dolor');
+      toast.error('Lorem ipsum dolor');
 
       this.setState({ imageName: '' });
       return;

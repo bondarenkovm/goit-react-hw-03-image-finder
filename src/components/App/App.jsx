@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { ToastContainer } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 import { Container } from './App.styled';
 import { Searchbar } from 'components/Searchbar';
 import { ImageGallery } from 'components/ImageGallery';
@@ -37,8 +37,7 @@ class App extends Component {
         <ImageGallery />
         {/* {loading && <div>Loading...</div>}
         {imageNane && <div>Foto</div>} */}
-        {/* <ToastContainer position="top-center" theme="dark" autoClose={2000} /> */}
-        <ToastContainer />
+        <Toaster />
       </Container>
     );
   }
