@@ -1,36 +1,62 @@
 import { Component } from 'react';
+// import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
+import { FcSearch } from 'react-icons/fc';
 import { Header, Form, Button, Span, Input } from './Searchbar.styled';
 
 class Searchbar extends Component {
   state = {
-    imageNane: '',
+    imageName: '',
   };
-  handleNameChange = evt => {
-    this.setState({ imageNane: evt.currentTarget.value });
+  handleNameChange = ({ currentTarget: { value } }) => {
+    this.setState({ imageName: value.toLowerCase() });
+  };
+
+  handleSubmit = evt => {
+    const { imageName } = this.state;
+    const { formSubmit } = this.props;
+    evt.preventDefault();
+    if (imageName.trim() === '') {
+      alert('name');
+      //   toast.error('Lorem ipsum dolor');
+
+      this.setState({ imageName: '' });
+      return;
+    }
+    formSubmit(imageName);
+    this.setState({ imageName: '' });
   };
 
   render() {
-    const { imageNane } = this.state;
+    const {
+      handleNameChange,
+      handleSubmit,
+      state: { imageName },
+    } = this;
     return (
       <Header>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Button type="submit">
+            <FcSearch style={{ width: 40, height: 40 }} />
             <Span>Search</Span>
           </Button>
 
           <Input
             type="text"
-            value={imageNane}
-            name="imageNane"
+            value={imageName}
+            name="imageName"
             autocomplete="off"
             autoFocus
             placeholder="Search images and photos"
-            onChange={this.handleNameChange}
+            onChange={handleNameChange}
           />
         </Form>
       </Header>
     );
   }
 }
+Searchbar.propTypes = {
+  formSubmit: PropTypes.func.isRequired,
+};
 
 export { Searchbar };

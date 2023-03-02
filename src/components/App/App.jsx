@@ -1,8 +1,18 @@
 import { Component } from 'react';
+import { ToastContainer } from 'react-toastify';
 import { Container } from './App.styled';
 import { Searchbar } from 'components/Searchbar';
+import { ImageGallery } from 'components/ImageGallery';
 
 class App extends Component {
+  state = {
+    imageName: '',
+    // loading: false,
+  };
+
+  formSubmitHandler = imageName => {
+    this.setState({ imageName });
+  };
   // state = {
   //   imageNane: null,
   //   loading: false,
@@ -19,12 +29,16 @@ class App extends Component {
   // }
   render() {
     // const { imageNane, loading } = this.state;
+    const { formSubmitHandler } = this;
 
     return (
       <Container>
-        <Searchbar />
+        <Searchbar formSubmit={formSubmitHandler} />
+        <ImageGallery />
         {/* {loading && <div>Loading...</div>}
         {imageNane && <div>Foto</div>} */}
+        {/* <ToastContainer position="top-center" theme="dark" autoClose={2000} /> */}
+        <ToastContainer />
       </Container>
     );
   }
