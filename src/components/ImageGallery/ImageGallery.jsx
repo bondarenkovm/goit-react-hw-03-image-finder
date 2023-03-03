@@ -5,6 +5,7 @@ import { List, Item } from './ImageGallery.styled';
 import { fetchPixabay } from 'services/fetchPixabayAPI';
 import { ImageGalleryItem } from 'components/ImageGalleryItem';
 import { Button } from 'components/Button';
+import { Loader } from 'components/Loader';
 
 class ImageGallery extends Component {
   state = {
@@ -12,6 +13,7 @@ class ImageGallery extends Component {
     items: [],
     page: 1,
     showButton: false,
+    loading: false,
   };
 
   buttonСlick = () => {
@@ -42,8 +44,11 @@ class ImageGallery extends Component {
       (prevProps.value !== value && page === 1) ||
       (prevProps.value === value && prevState.page !== page)
     ) {
+      this.setState({ loading: true });
       const { hits, totalHits } = await fetchPixabay(value, page);
-
+      //   console.log('hits.length', hits.length);
+      //   console.log('totalHits', totalHits);
+      this.setState({ loading: false });
       if (hits.length) {
         this.setState({ showButton: true });
         this.setState(prevState => {
@@ -52,14 +57,20 @@ class ImageGallery extends Component {
           };
         });
       } else {
-        toast.error('dfvjkdfnbgkjgnbjdkf,n');
+        toast.error('Nothing was found according to the search results!', {
+          style: {
+            background: '#ca1616',
+            color: '#fff',
+          },
+        });
         this.setState({
           items: [],
           page: 1,
           showButton: false,
         });
       }
-      if (hits.length >= totalHits) {
+
+      if (page * 12 >= totalHits) {
         this.setState({
           showButton: false,
         });
@@ -68,9 +79,10 @@ class ImageGallery extends Component {
   }
 
   render() {
-    const { items, showButton } = this.state;
+    const { items, showButton, loading } = this.state;
     return (
       <>
+        {loading && <Loader />}
         <List>
           {items.map(({ id, webformatURL, largeImageURL, user }) => {
             return (

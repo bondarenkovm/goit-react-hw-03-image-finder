@@ -17,8 +17,7 @@ class Searchbar extends Component {
     const { formSubmit } = this.props;
     evt.preventDefault();
     if (imageName.trim() === '') {
-      toast.error('Lorem ipsum dolor', {
-        duration: 1500,
+      toast.error('Enter something!', {
         style: {
           background: '#ca1616',
           color: '#fff',

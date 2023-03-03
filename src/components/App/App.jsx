@@ -7,7 +7,6 @@ import { ImageGallery } from 'components/ImageGallery';
 class App extends Component {
   state = {
     imageName: '',
-    // loading: false,
   };
 
   formSubmitHandler = imageName => {
