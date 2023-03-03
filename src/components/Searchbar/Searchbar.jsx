@@ -43,7 +43,7 @@ class Searchbar extends Component {
         <Form onSubmit={handleSubmit}>
           <Button type="submit">
             <FcSearch style={{ width: 40, height: 40 }} />
-            <Span>Search</Span>
+            {/* <Span>Search</Span> */}
           </Button>
 
           <Input
