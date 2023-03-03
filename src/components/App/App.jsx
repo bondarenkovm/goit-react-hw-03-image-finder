@@ -28,16 +28,22 @@ class App extends Component {
   //     .finally(() => this.setState({ loading: false }));
   // }
   render() {
-    // const { imageNane, loading } = this.state;
-    const { formSubmitHandler } = this;
+    const {
+      state: { imageName },
+      formSubmitHandler,
+    } = this;
 
     return (
       <Container>
         <Searchbar formSubmit={formSubmitHandler} />
-        <ImageGallery />
+        <ImageGallery value={imageName} />
         {/* {loading && <div>Loading...</div>}
         {imageNane && <div>Foto</div>} */}
-        <Toaster />
+        <Toaster
+          toastOptions={{
+            duration: 1500,
+          }}
+        />
       </Container>
     );
   }
