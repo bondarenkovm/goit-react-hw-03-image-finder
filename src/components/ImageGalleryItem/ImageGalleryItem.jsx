@@ -6,7 +6,7 @@ class ImageGalleryItem extends Component {
   //
 
   render() {
-    const { alt, smallImage, bigPicture } = this.props;
+    const { alt, smallImage } = this.props;
     return (
       <>
         <Img src={smallImage} alt={alt} />

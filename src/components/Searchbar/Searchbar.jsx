@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { toast } from 'react-hot-toast';
 import PropTypes from 'prop-types';
 import { FcSearch } from 'react-icons/fc';
-import { Header, Form, Button, Span, Input } from './Searchbar.styled';
+import { Header, Form, Button, Input } from './Searchbar.styled';
 
 class Searchbar extends Component {
   state = {
