@@ -44,35 +44,39 @@ class ImageGallery extends Component {
       (prevProps.value !== value && page === 1) ||
       (prevProps.value === value && prevState.page !== page)
     ) {
-      this.setState({ loading: true });
-      const { hits, totalHits } = await fetchPixabay(value, page);
+      try {
+        this.setState({ loading: true });
+        const { hits, totalHits } = await fetchPixabay(value, page);
 
-      this.setState({ loading: false });
-      if (hits.length) {
-        this.setState({ showButton: true });
-        this.setState(prevState => {
-          return {
-            items: [...prevState.items, ...hits],
-          };
-        });
-      } else {
-        toast.error('Nothing was found according to the search results!', {
-          style: {
-            background: '#ca1616',
-            color: '#fff',
-          },
-        });
+        this.setState({ loading: false });
+        if (hits.length) {
+          this.setState({ showButton: true });
+          this.setState(prevState => {
+            return {
+              items: [...prevState.items, ...hits],
+            };
+          });
+        } else {
+          toast.error('Nothing was found according to the search results!', {
+            style: {
+              background: '#ca1616',
+              color: '#fff',
+            },
+          });
 
-        this.setState({
-          items: [],
-          page: 1,
-          showButton: false,
-        });
-      }
-      if (12 + items.length >= totalHits) {
-        this.setState({
-          showButton: false,
-        });
+          this.setState({
+            items: [],
+            page: 1,
+            showButton: false,
+          });
+        }
+        if (12 + items.length >= totalHits) {
+          this.setState({
+            showButton: false,
+          });
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
   }
