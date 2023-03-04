@@ -46,8 +46,7 @@ class ImageGallery extends Component {
     ) {
       this.setState({ loading: true });
       const { hits, totalHits } = await fetchPixabay(value, page);
-      //   console.log('hits.length', hits.length);
-      //   console.log('totalHits', totalHits);
+
       this.setState({ loading: false });
       if (hits.length) {
         this.setState({ showButton: true });
@@ -63,13 +62,13 @@ class ImageGallery extends Component {
             color: '#fff',
           },
         });
+
         this.setState({
           items: [],
           page: 1,
           showButton: false,
         });
       }
-      //   console.log('items.length', items.length + 12);
       if (12 + items.length >= totalHits) {
         this.setState({
           showButton: false,
