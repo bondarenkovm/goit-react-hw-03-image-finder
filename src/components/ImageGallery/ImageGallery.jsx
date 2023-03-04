@@ -26,7 +26,7 @@ class ImageGallery extends Component {
 
   async componentDidUpdate(prevProps, prevState) {
     const { value } = this.props;
-    const { page, imageName } = this.state;
+    const { page, imageName, items } = this.state;
 
     if (prevProps.value !== value) {
       this.setState({ imageName: value });
@@ -69,8 +69,8 @@ class ImageGallery extends Component {
           showButton: false,
         });
       }
-
-      if (page * 12 >= totalHits) {
+      //   console.log('items.length', items.length + 12);
+      if (12 + items.length >= totalHits) {
         this.setState({
           showButton: false,
         });
